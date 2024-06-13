@@ -2,16 +2,21 @@
 100% non-blocking logging module for ngx_lua(openresty)
 
 ## QuickStart
-1. define logger object in `init_worker_by_lua` phase
-2. use `logger` in other phase like `content_by_lua`, `access_by_Lua`
-
-### 1. Define a logger
+1. define logger shared dict.
+2. define logger object in `init_worker_by_lua` phase
+3. use `logger` in other phase like `content_by_lua`, `access_by_Lua`
+### 1. Define logger shared dict.
+```nginx
+# nginx.conf  http
+lua_shared_dict log 1m;
+```
+### 2. Define a logger
 ```lua
 -- init_worker_by_lua
 logger = require('resty.logger').new(log_level="INFO")
 ```
 
-### 2. Use logger
+### 3. Use logger
 ```lua
 --- access_by_lua
 logger:debug("hello world")
