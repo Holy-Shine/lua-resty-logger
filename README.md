@@ -1,5 +1,5 @@
 # lua-resty-logger
-100% non-blocking logging module for ngx_lua(openresty)
+100% non-blocking logging module for ngx_lua(openresty) using `ngx.timer`
 
 ## QuickStart
 1. define logger shared dict.
