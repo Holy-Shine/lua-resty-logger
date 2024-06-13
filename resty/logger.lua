@@ -6,7 +6,7 @@ local println = utils.println
 
 
 local ngx        = ngx
-local log_shared = ngx.shared.logger
+local log_shared = ngx.shared.log
 -- global variables
 local LOGGER_LEVELS              = {["DEBUG"]=1, ["INFO"]=2, ["WARN"]=3, ["ERROR"]=4, ["FETAL"]=5}
 local LOGGER_OUT_STDOUT          = "STDOUT"  -- default logger output: stdout
@@ -19,11 +19,6 @@ local _M = {}
 _M._VERSION = '1.0'
 
 local mt = { __index = _M }
-
-
-
-
-
 
 function _M.new(log_level, log_path, log_rotate_days)
     local self = setmetatable({}, mt)
@@ -51,8 +46,6 @@ function _M:output_logs()
     end
     log_shared:set(LOGGER_BUFFER_KEY, '')
 end
-
-
 
 
 function _M:output(log_level, log_str)
